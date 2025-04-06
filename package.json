@@ -4,7 +4,8 @@
   "description": "Tinder for Devs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   },
   "homepage": "https://github.com/anujkamaljain/DevTinder-Backend#readme",
   "dependencies": {
-    "devtinder-backend": "file:"
+    "devtinder-backend": "file:",
+    "express": "^5.1.0"
   }
 }
