@@ -1,0 +1,29 @@
+{
+  "name": "devtinder-backend",
+  "version": "1.0.0",
+  "description": "Tinder for Devs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anujkamaljain/DevTinder-Backend.git"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript",
+    "mongoose",
+    "backend",
+    "devtinder"
+  ],
+  "author": "Anuj Kamal Jain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anujkamaljain/DevTinder-Backend/issues"
+  },
+  "homepage": "https://github.com/anujkamaljain/DevTinder-Backend#readme",
+  "dependencies": {
+    "devtinder-backend": "file:"
+  }
+}
