@@ -1,17 +1,10 @@
 const express = require("express");
 const app = express();
 
-app.get("/user", (req, res) => {
+app.get("/user/:userId", (req, res) => {
+    console.log(req.query);
+    console.log(req.params);
     res.send({ firstname: "John", lastname: "Doe" });
-});
-
-app.post("/user", (req, res) => {
-    console.log("Save user data to database");
-    res.send({ message: "User data saved successfully!" });
-});
-
-app.delete("/user", (req, res) => {
-    res.send({ message: "User data deleted successfully!" });
 });
 
 app.use("/test", (req, res) => {
