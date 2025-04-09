@@ -1,16 +1,114 @@
 const express = require("express");
+const connectDB = require("./config/database");
+const User = require("./models/user");
 const app = express();
 
-app.get("/user/:userId", (req, res) => {
-    console.log(req.query);
-    console.log(req.params);
-    res.send({ firstname: "John", lastname: "Doe" });
+app.use(express.json());
+
+//signup API
+app.post("/signup", async (req, res) => {
+  try {
+    const user = new User(req.body);
+    await user.save();
+    res.send("User created successfully.");
+  } catch (err) {
+    res.status(400).send("Error creating user.");
+  }
 });
 
-app.use("/test", (req, res) => {
-    res.send("Hello from testing server!");
+//Get user by email or id from database
+app.get("/user", async (req, res) => {
+  if (req.body.emailId) {
+    try {
+      const user = await User.find({ emailId: req.body.emailId });
+      if (!user) {
+        return res.status(404).send("User not found.");
+      } else {
+        res.send(user);
+      }
+    } catch (err) {
+      res.status(400).send("Something went wrong.");
+    }
+  } else {
+    try {
+      const user = await User.findById(req.body.id);
+      if (!user) {
+        return res.status(404).send("User not found.");
+      } else {
+        res.send(user);
+      }
+    } catch (err) {
+      res.status(400).send("Something went wrong.");
+    }
+  }
 });
 
-app.listen(3000, () => {
-    console.log("Server is running on port 3000");
+//Get all users
+app.get("/feed", async (req, res) => {
+  try {
+    const users = await User.find({});
+    if (users.length === 0) {
+      return res.status(404).send("No users found.");
+    } else {
+      res.send(users);
+    }
+  } catch (err) {
+    res.status(400).send("Something went wrong.");
+  }
 });
+
+//Delete user by id from database
+app.delete("/user", async (req, res) => {
+  const id = req.body.id;
+  try {
+    const user = await User.findByIdAndDelete(id);
+    if (!user) {
+      return res.status(404).send("User not found.");
+    } else {
+      res.send("User deleted successfully.");
+    }
+  } catch (err) {
+    res.status(400).send("Something went wrong.");
+  }
+});
+
+//Update user by id from database
+app.patch("/user/:userId", async (req, res) => {
+  const id = req.params?.userId;
+  const data = req.body;
+
+  try {
+    const AllowedUpdates = ["photoUrl", "about", "gender", "age", "skills"];
+    const isUpdatesAllowed = Object.keys(data).every((k) =>
+      AllowedUpdates.includes(k)
+    );
+    if(!isUpdatesAllowed){
+      throw new Error("Update not allowed.");
+    }
+    if(data.skills.length > 5){
+      throw new Error("Cannot add more than 5 skills. Update Failed.");
+    }
+    const user = await User.findByIdAndUpdate(id, data, {
+      returnDocument: "after",
+      runValidators: true,
+    });
+    if (!user) {
+      return res.status(404).send("User not found.");
+    } else {
+      res.send("User updated successfully.");
+    }
+  } catch (err) {
+    res.status(400).send("Update failed : " + err.message);
+  }
+});
+
+connectDB()
+  .then(() => {
+    console.log("Database connected successfully.");
+    app.listen(3000, () => {
+      console.log("Server is running on port 3000");
+    });
+  })
+  .catch((err) => {
+    console.log("Database connection failed.", err);
+  });
