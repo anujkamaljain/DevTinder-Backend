@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/anujkamaljain/DevTinder-Backend#readme",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "devtinder-backend": "file:",
     "express": "^5.1.0",
     "mongoose": "^8.13.2",

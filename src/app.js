@@ -2,19 +2,44 @@ const express = require("express");
 const connectDB = require("./config/database");
 const User = require("./models/user");
 const app = express();
+const validateSignUpData = require("./helpers/validation");
+const bcrypt = require('bcrypt');
 
 app.use(express.json());
 
 //signup API
 app.post("/signup", async (req, res) => {
   try {
-    const user = new User(req.body);
+    //validating user data before creating user
+    validateSignUpData(req);
+    
+    const { firstName, lastName, password, emailId } = req.body;
+
+    //checking if user already exists
+    const userExists = await User.findOne({ emailId: emailId });
+    if (userExists) {
+      return res.status(400).send("User already exists.");
+    }
+    //encrypting password before saving to database
+    const passwordHash = await bcrypt.hash(password, 10);
+    const user = new User({
+      firstName: firstName,
+      lastName: lastName,
+      emailId: emailId,
+      password: passwordHash
+    });
     await user.save();
     res.send("User created successfully.");
   } catch (err) {
-    res.status(400).send("Error creating user.");
+    res.status(400).send("ERROR : "+ err.message);
   }
 });
+
+
+//login API
+app.post("/login", async (req,res) => {
+  
+})
 
 //Get user by email or id from database
 app.get("/user", async (req, res) => {
