@@ -2,8 +2,9 @@ const express = require("express");
 const connectDB = require("./config/database");
 const User = require("./models/user");
 const app = express();
-const validateSignUpData = require("./helpers/validation");
+const { validateSignUpData, validateLoginData } = require("./helpers/validation");
 const bcrypt = require('bcrypt');
+
 
 app.use(express.json());
 
@@ -38,8 +39,22 @@ app.post("/signup", async (req, res) => {
 
 //login API
 app.post("/login", async (req,res) => {
-  
-})
+  try{
+    validateLoginData(req);
+    const { emailId, password } = req.body;
+    const user = await User.findOne({emailId:emailId});
+    if(!user){
+      throw new Error("Incorrect login credentials.");
+    }
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if(!isPasswordValid){
+      throw new Error("Incorrect login credentials.");
+    }
+    res.send("Login successful");
+  }catch (err){
+    res.status(400).send("ERROR : " + err.message);
+  }
+});
 
 //Get user by email or id from database
 app.get("/user", async (req, res) => {
