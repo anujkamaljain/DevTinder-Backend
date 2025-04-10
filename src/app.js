@@ -2,18 +2,24 @@ const express = require("express");
 const connectDB = require("./config/database");
 const User = require("./models/user");
 const app = express();
-const { validateSignUpData, validateLoginData } = require("./helpers/validation");
-const bcrypt = require('bcrypt');
-
-
+const {
+  validateSignUpData,
+  validateLoginData,
+} = require("./helpers/validation");
+const bcrypt = require("bcrypt");
+const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
+app.use(cookieParser());
 app.use(express.json());
+require("dotenv").config();
+const userAuth = require("./middlewares/auth");
 
 //signup API
 app.post("/signup", async (req, res) => {
   try {
     //validating user data before creating user
     validateSignUpData(req);
-    
+
     const { firstName, lastName, password, emailId } = req.body;
 
     //checking if user already exists
@@ -27,118 +33,52 @@ app.post("/signup", async (req, res) => {
       firstName: firstName,
       lastName: lastName,
       emailId: emailId,
-      password: passwordHash
+      password: passwordHash,
     });
     await user.save();
     res.send("User created successfully.");
   } catch (err) {
-    res.status(400).send("ERROR : "+ err.message);
-  }
-});
-
-
-//login API
-app.post("/login", async (req,res) => {
-  try{
-    validateLoginData(req);
-    const { emailId, password } = req.body;
-    const user = await User.findOne({emailId:emailId});
-    if(!user){
-      throw new Error("Incorrect login credentials.");
-    }
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if(!isPasswordValid){
-      throw new Error("Incorrect login credentials.");
-    }
-    res.send("Login successful");
-  }catch (err){
     res.status(400).send("ERROR : " + err.message);
   }
 });
 
-//Get user by email or id from database
-app.get("/user", async (req, res) => {
-  if (req.body.emailId) {
-    try {
-      const user = await User.find({ emailId: req.body.emailId });
-      if (!user) {
-        return res.status(404).send("User not found.");
-      } else {
-        res.send(user);
-      }
-    } catch (err) {
-      res.status(400).send("Something went wrong.");
-    }
-  } else {
-    try {
-      const user = await User.findById(req.body.id);
-      if (!user) {
-        return res.status(404).send("User not found.");
-      } else {
-        res.send(user);
-      }
-    } catch (err) {
-      res.status(400).send("Something went wrong.");
-    }
-  }
-});
-
-//Get all users
-app.get("/feed", async (req, res) => {
+//login API
+app.post("/login", async (req, res) => {
   try {
-    const users = await User.find({});
-    if (users.length === 0) {
-      return res.status(404).send("No users found.");
-    } else {
-      res.send(users);
-    }
-  } catch (err) {
-    res.status(400).send("Something went wrong.");
-  }
-});
-
-//Delete user by id from database
-app.delete("/user", async (req, res) => {
-  const id = req.body.id;
-  try {
-    const user = await User.findByIdAndDelete(id);
+    //validating login data entered by user
+    validateLoginData(req);
+    const { emailId, password } = req.body;
+    //checking if user exists
+    const user = await User.findOne({ emailId: emailId });
     if (!user) {
-      return res.status(404).send("User not found.");
+      throw new Error("Incorrect login credentials.");
+    }
+    //checking if password is correct
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (isPasswordValid) {
+      //setting cookie for user session
+      //in real world application, we would set a JWT token here
+      const token = await jwt.sign(
+        { _id: user._id },
+        process.env.JWT_TOKEN_KEY
+      );
+      res.cookie("token", token);
+      res.send("Login successful");
     } else {
-      res.send("User deleted successfully.");
+      throw new Error("Incorrect login credentials.");
     }
   } catch (err) {
-    res.status(400).send("Something went wrong.");
+    res.status(400).send("ERROR : " + err.message);
   }
 });
 
-//Update user by id from database
-app.patch("/user/:userId", async (req, res) => {
-  const id = req.params?.userId;
-  const data = req.body;
-
+//gets profile of the user after login
+app.get("/profile", userAuth, async (req, res) => {
   try {
-    const AllowedUpdates = ["photoUrl", "about", "gender", "age", "skills"];
-    const isUpdatesAllowed = Object.keys(data).every((k) =>
-      AllowedUpdates.includes(k)
-    );
-    if(!isUpdatesAllowed){
-      throw new Error("Update not allowed.");
-    }
-    if(data.skills.length > 5){
-      throw new Error("Cannot add more than 5 skills. Update Failed.");
-    }
-    const user = await User.findByIdAndUpdate(id, data, {
-      returnDocument: "after",
-      runValidators: true,
-    });
-    if (!user) {
-      return res.status(404).send("User not found.");
-    } else {
-      res.send("User updated successfully.");
-    }
+    const user = req.user;
+    res.send(user);
   } catch (err) {
-    res.status(400).send("Update failed : " + err.message);
+    res.status(400).send("ERROR : " + err.message);
   }
 });
 
