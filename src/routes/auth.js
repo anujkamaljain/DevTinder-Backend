@@ -6,6 +6,7 @@ const {
 } = require("../helpers/validation");
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
+const userAuth = require("../middlewares/auth");
 
 //signup API
 authRouter.post("/signup", async (req, res) => {
@@ -63,6 +64,13 @@ authRouter.post("/login", async (req, res) => {
   }
 });
 
-
+//logout API
+authRouter.post("/logout", userAuth ,async (req, res) => {
+  res
+    .cookie("token", null, {
+      expires: new Date(Date.now()),
+    })
+    .send("Logged out successfully.");
+});
 
 module.exports = authRouter;
