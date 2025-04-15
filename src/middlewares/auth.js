@@ -17,7 +17,6 @@ const userAuth = async (req, res, next) => {
       next();
     }
   } catch (err) {
-    console.log(err);
     res.status(400).send("Error while authenticating user." + err.message);
   }
 };

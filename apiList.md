@@ -1,0 +1,24 @@
+# Dev Tinder API's
+
+## authRouter
+- POST /auth/signup
+- POST /auth/login
+- POST /auth/logout 
+
+## profileRouter
+- GET /profile/view
+- PATCH /profile/edit
+- PATCH /profile/password
+
+## RequestRouter
+- POST /request/send/like/:userid
+- POST /request/send/pass/:userid
+- POST /request/review/accepted/:requestid
+- POST /request/review/rejected/:requestid
+
+## userRouter
+- GET /user/connections
+- GET /user/requests
+- GET /user/feed 
+
+Status: like, pass, accepted, rejected
