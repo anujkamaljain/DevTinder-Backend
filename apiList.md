@@ -11,8 +11,8 @@
 - PATCH /profile/password
 
 ## RequestRouter
-- POST /request/send/like/:userid
-- POST /request/send/pass/:userid
+- POST /request/send/:status/:userid
+
 - POST /request/review/accepted/:requestid
 - POST /request/review/rejected/:requestid
 
