@@ -26,6 +26,7 @@ const connectionRequestSchema = new mongoose.Schema(
 
 connectionRequestSchema.index({ fromUserId: 1, toUserId: 1});
 
+//pre middleware which checks if the user isnt trying to send the request to himself
 connectionRequestSchema.pre("save", function(next){
   const connectionRequest = this;
   if(connectionRequest.fromUserId.equals(connectionRequest.toUserId)){
