@@ -40,6 +40,8 @@ requestRouter.post(
       if (!toUser) {
         return res.status(400).json({ message: "User not found." });
       }
+
+      //creating connection request to store in DB
       const connectionRequest = new ConnectionRequestModel({
         fromUserId: fromUserId,
         toUserId: toUserId,
@@ -68,19 +70,23 @@ requestRouter.post(
       const requestId = req.params.requestId;
       const status = req.params.status;
       const allowedStatus = ["accepted", "rejected"];
+      //no other request status other than accepted and rejected are allowed as it is request review API.
       if (!allowedStatus.includes(status)) {
         throw new Error(`Invalid request status "${status}."`);
       }
-      const connectionRequest = await ConnectionRequestModel.findById({
+      //finding the connection request with the id and verifying if the request belongs to the user and status is like then only it can be accepted or rejected.
+      const connectionRequest = await ConnectionRequestModel.findOne({
         _id: requestId,
         toUserId: loggedInUser._id,
         status: "like",
       });
+      //if the connection request is not found 
       if (!connectionRequest) {
         return res
           .status(404)
           .json({ message: "Connection request not found." });
       }
+      //updating the connection request status to accepted or rejected.
       connectionRequest.status = status;
       const data = await connectionRequest.save();
       res.json({ message: `Connection request ${status}.`, data: data });

@@ -66,6 +66,7 @@ authRouter.post("/login", async (req, res) => {
 
 //logout API
 authRouter.post("/logout", userAuth ,async (req, res) => {
+  //setting token value in cookie to null and expiring it immdeiately to logout the user.
   res
     .cookie("token", null, {
       expires: new Date(Date.now()),

@@ -41,11 +41,13 @@ profileRouter.patch("/profile/password", userAuth, async (req, res) => {
   try {
     const { oldPassword, newPassword } = req.body;
     const loggedInUser = req.user;
+    //validating old password before allowing the user to update new password. it isnt required because already userAuth is checking if user is loggedin or not but still for more security.
     const isPasswordValid = await loggedInUser.validatePassword(oldPassword);
     if (!isPasswordValid) {
       throw new Error("Invalid old password.");
     }
     validateNewPassword(newPassword);
+    //hashing new password before saving to database
     loggedInUser.password = await bcrypt.hash(newPassword, 10);
     loggedInUser.save();
     res.json({
