@@ -72,7 +72,7 @@ userSchema.methods.getJWT = async function(){
     const token = await jwt.sign(
         { _id: user._id },
         process.env.JWT_TOKEN_KEY,
-        { expiresIn: "7d" }
+        { expiresIn: "1d" }
       );
     return token;
 }
