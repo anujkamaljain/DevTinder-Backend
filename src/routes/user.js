@@ -13,7 +13,10 @@ userRouter.get("/user/requests", userAuth, async (req, res) => {
       toUserId: loggedInUser._id,
       status: "like",
     }).populate("fromUserId", USER_SAFE_DATA);
-    res.send(connectionRequests);
+    res.json({
+      message: "requests fetched successfully.",
+      data: connectionRequests
+    });
   } catch (err) {
     res.status(400).send("ERROR : " + err.message);
   }
