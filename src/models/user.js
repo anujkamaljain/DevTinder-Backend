@@ -51,7 +51,7 @@ const userSchema = new mongoose.Schema({
     },
     photoUrl: {
         type: String,
-        default: "https://www.ihna.edu.au/blog/wp-content/uploads/2022/10/user-dummy.png",
+        default: "https://cdn-icons-png.flaticon.com/512/9187/9187604.png",
         validate(value){
             if(!validator.isURL(value)){
                 throw new Error("Invalid URL provided : " + value);
@@ -71,15 +71,16 @@ userSchema.methods.getJWT = async function(){
     const user = this;
     const token = await jwt.sign(
         { _id: user._id },
-        "DevTinder@301277",
+        process.env.JWT_TOKEN_KEY,
         { expiresIn: "1d" }
       );
     return token;
-}
+};
 
 userSchema.methods.validatePassword = async function(passwordEnteredByUser) {
     const user = this;
-    const isPasswordValid = await bcrypt.compare(passwordEnteredByUser, this.password);
+    const passwordHash = user.password;
+    const isPasswordValid = await bcrypt.compare(passwordEnteredByUser, passwordHash);
     return isPasswordValid;
 }
 
