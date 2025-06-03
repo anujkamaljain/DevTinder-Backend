@@ -10,7 +10,9 @@ const profileRouter = require("./routes/profile");
 const requestRouter = require("./routes/request");
 const userRouter = require("./routes/user");
 const cors = require("cors");
+const http = require("http");
 require("../utils/cronjob");
+const initializeSocket = require("../utils/socket");
 
 app.use(cors({
   origin: "http://localhost:5173",
@@ -22,10 +24,13 @@ app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
 
+const server = http.createServer(app);
+initializeSocket(server);
+
 connectDB()
   .then(() => {
     console.log("Database connected successfully.");
-    app.listen(7777, () => {
+    server.listen(7777, () => {
       console.log("Server is running on port 7777");
     });
   })
