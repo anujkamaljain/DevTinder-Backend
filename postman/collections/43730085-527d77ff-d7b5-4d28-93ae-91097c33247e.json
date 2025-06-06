@@ -1,0 +1,395 @@
+{
+	"info": {
+		"_postman_id": "43730085-527d77ff-d7b5-4d28-93ae-91097c33247e",
+		"name": "Dev Tinder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"id": "43730085-c960fa29-f9b7-4444-adb4-b72a5ab8bd23",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Makei\",\r\n    \"lastName\":\"Zukerberg\",\r\n    \"emailId\": \"makr1@gmail.com\",\r\n    \"password\": \"Makr301277@\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7777/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "profile/password",
+			"id": "43730085-b29f0318-57bc-4c0b-9c91-af0579c3195a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"oldPassword\":\"Dhobi301277@\",\r\n    \"newPassword\":\"Dhoni301277@\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7777/profile/password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"profile",
+						"password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "request/send/:status/:toUserId",
+			"id": "43730085-09b80cf4-aaec-402c-995b-75be0187ce17",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7777/request/send/like/67f70bff9d5a91b9ccd1d585",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"request",
+						"send",
+						"like",
+						"67f70bff9d5a91b9ccd1d585"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"id": "43730085-a0626f6c-b353-44c0-8a2b-4adc386e7500",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"emailId\": \"anujkamaljain1234@gmail.com\",\r\n    \"password\": \"Ak301277@\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7777/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"id": "43730085-f0f2036a-a9f6-48b3-adb2-6201cb10f9f0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7777/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "profile/view",
+			"id": "43730085-3f098fb5-76b0-40a3-b4e4-0d8d9391eb86",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7777/profile/view",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"profile",
+						"view"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "profile/edit",
+			"id": "43730085-7e12da8e-10bd-4017-bd42-93e78bff94ec",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"age\":29,\r\n    \"gender\":\"Female\",\r\n    \"photoUrl\":\"https://akshaysaini.in/img/akshay.jpg\",\r\n    \"about\":\"learning nodejs student\",\r\n    \"skills\": [\"js\", \"React\", \"node,js\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7777/profile/edit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"profile",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/connections",
+			"id": "43730085-b123462b-2a6b-4c57-a35d-17892feda550",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7777/user/connections",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"user",
+						"connections"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/feed",
+			"id": "43730085-84df7970-725a-400e-98e9-2df5dd0430bf",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7777/user/feed?page=2&limit=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"user",
+						"feed"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						},
+						{
+							"key": "limit",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/requests",
+			"id": "43730085-3a3e10ef-a664-483f-9098-4407d2f8aac7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7777/user/requests",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"user",
+						"requests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "request/review/:status/:toRequestId",
+			"id": "43730085-bbaa20cc-666a-4af8-9f1e-0b11c51a61fc",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7777/request/review/accepted/68016889fff47454dabc3063",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"request",
+						"review",
+						"accepted",
+						"68016889fff47454dabc3063"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "chat/:targetUser",
+			"id": "43730085-315af610-7b25-4267-a081-3b4d96ac10e5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7777/chat/67fecacd4195f104b92e0adb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"chat",
+						"67fecacd4195f104b92e0adb"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
