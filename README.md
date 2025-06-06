@@ -94,9 +94,6 @@ DevTinder-Backend/
 
 ## 👨‍💻 Author
 # Anuj Jain
-🔗 Portfolio
-🐦 Twitter
-💼 LinkedIn
 
 
 ## Preview
