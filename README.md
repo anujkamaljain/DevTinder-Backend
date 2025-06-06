@@ -50,29 +50,6 @@ DevTinder is like dating... but for devs! Whether you're hunting for your next h
 
 ---
 
-## 📁 Project Structure
-```bash
-DevTinder-Backend/
-├── src/
-│   ├── config/          # Database connection config
-│   ├── helpers/         # Helper functions (e.g., validations)
-│   ├── middlewares/     # Authentication middleware
-│   ├── models/          # Mongoose schemas
-│   ├── routes/          # API routes with inline controllers (users, auth, matches, etc.)
-│   └── utils/           # Utility functions (constants, cron jobs, chat, Amazon SES)
-│
-├── app.js               # App entry point (root of the project)
-├── .env                 # Environment variable file (should be in .gitignore)
-├── .gitignore           # Files/Folders to ignore in GitHub
-├── package.json         # Project metadata & npm scripts
-├── package-lock.json    # Exact versions of installed dependencies
-├── apilist.md           # Initial plan for APIs to be built
-└── README.md            # You're here! 😎
-
-
-
----
-
 ## 🛠️ Setup Instructions
 
 1. **Clone the repo**  
@@ -91,12 +68,13 @@ DevTinder-Backend/
     ```bash
     npm run dev
 
-
 ---
 
 ## 👨‍💻 Author
 # Anuj Jain
 
+
+---
 
 ## Preview
 
@@ -113,6 +91,27 @@ DevTinder-Backend/
 ## POSTMAN COLLECTION
 https://devtinder-api-tester.postman.co/workspace/DevTinder~1f27e421-3edf-411b-ad94-e3d888ff5d54/collection/43730085-527d77ff-d7b5-4d28-93ae-91097c33247e?action=share&creator=43730085
 
+
+---
+
+## 📁 Project Structure
+```bash
+DevTinder-Backend/
+├── src/
+│   ├── config/          # Database connection config
+│   ├── helpers/         # Helper functions (e.g., validations)
+│   ├── middlewares/     # Authentication middleware
+│   ├── models/          # Mongoose schemas
+│   ├── routes/          # API routes with inline controllers (users, auth, matches, etc.)
+│   └── utils/           # Utility functions (constants, cron jobs, chat, Amazon SES)
+│
+├── app.js               # App entry point (root of the project)
+├── .env                 # Environment variable file (should be in .gitignore)
+├── .gitignore           # Files/Folders to ignore in GitHub
+├── package.json         # Project metadata & npm scripts
+├── package-lock.json    # Exact versions of installed dependencies
+├── apilist.md           # Initial plan for APIs to be built
+└── README.md            # You're here! 😎
 
 
 MADE WITH ❤️ 
