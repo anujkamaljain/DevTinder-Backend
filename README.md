@@ -103,9 +103,9 @@ DevTinder-Backend/
 │   ├── middlewares/     # Authentication middleware
 │   ├── models/          # Mongoose schemas
 │   ├── routes/          # API routes with inline controllers (users, auth, matches, etc.)
-│   └── utils/           # Utility functions (constants, cron jobs, chat, Amazon SES)
+│   └── app.js           # App entry point (root of the project)
 │
-├── app.js               # App entry point (root of the project)
+├── utils/               # Utility functions (constants, cron jobs, chat, Amazon SES)
 ├── .env                 # Environment variable file (should be in .gitignore)
 ├── .gitignore           # Files/Folders to ignore in GitHub
 ├── package.json         # Project metadata & npm scripts
