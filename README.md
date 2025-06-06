@@ -14,7 +14,7 @@
 
 ## 🚀 Live Website
 
-👉 **Frontend Deployed at**: [anujkamaljainprojects.me](https://anujkamaljainprojects.me)
+👉 **Website Live at**: [anujkamaljainprojects.me](https://anujkamaljainprojects.me)
 
 ---
 
