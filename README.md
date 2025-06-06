@@ -51,22 +51,24 @@ DevTinder is like dating... but for devs! Whether you're hunting for your next h
 ---
 
 ## 📁 Project Structure
+```bash
 DevTinder-Backend/
-│
 ├── src/
-│ ├── config/ # database connection
-│ ├── helpers/ # Helper functions (validations)
-│ ├── middlewares/ # auth middleware
-│ ├── models/ # Mongoose schemas
-│ ├── routes/ # API routes with controllers (users, auth, matches, etc.)
-│ └── app.js (root of the project)
-├── utils/ # Helper functions (constants, cron jobs, chat, amazon-ses)
-├── .env # Environment variable template
-├── .gitignore # Folder / File names to prevent them from getting tracked by github.
-├── package.json # Project metadata & scripts
-├── package-lock.json # Exact versions of dependencies 
-├── apilist.md # initial plan for API's which i planned to build
-└── README.md # You're here! 😎
+│   ├── config/          # Database connection config
+│   ├── helpers/         # Helper functions (e.g., validations)
+│   ├── middlewares/     # Authentication middleware
+│   ├── models/          # Mongoose schemas
+│   ├── routes/          # API routes with inline controllers (users, auth, matches, etc.)
+│   └── utils/           # Utility functions (constants, cron jobs, chat, Amazon SES)
+│
+├── app.js               # App entry point (root of the project)
+├── .env                 # Environment variable file (should be in .gitignore)
+├── .gitignore           # Files/Folders to ignore in GitHub
+├── package.json         # Project metadata & npm scripts
+├── package-lock.json    # Exact versions of installed dependencies
+├── apilist.md           # Initial plan for APIs to be built
+└── README.md            # You're here! 😎
+
 
 
 ---
