@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  💘 Match. Chat. Collaborate. <br />
+   Match. Chat. Collaborate. <br />
   The ultimate backend API powering DevTinder — a sleek platform for developers to match with people.
 </p>
 
