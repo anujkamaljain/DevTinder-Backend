@@ -12,11 +12,6 @@
 
 ---
 
-## 🚀 Live Website
-
-👉 **Website Live at**: [anujkamaljainprojects.me](https://anujkamaljainprojects.me)
-
----
 
 ## 🧠 What is DevTinder?
 
