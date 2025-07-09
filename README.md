@@ -1,6 +1,5 @@
 <h1 align="center">🔥 DevTinder Backend 🔥</h1>
 <p align="center">
-  <img src="https://img.shields.io/badge/Status-Live-brightgreen?style=for-the-badge&logo=vercel" />
   <img src="https://img.shields.io/badge/Built%20with-Node.js-blue?style=for-the-badge&logo=node.js" />
   <img src="https://img.shields.io/badge/Made%20by-Anuj%20Jain-orange?style=for-the-badge&logo=github" />
 </p>
